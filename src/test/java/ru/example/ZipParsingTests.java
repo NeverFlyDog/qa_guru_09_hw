@@ -31,10 +31,11 @@ public class ZipParsingTests {
                     Assertions.assertEquals(5, pdf.numberOfPages);
                     Assertions.assertTrue(pdf.text.contains("Lorem ipsum dolor sit amet"));
 
-                    break;
+                    return;
                 }
             }
         }
+        Assertions.fail("PDF-file does not exist in archive: " + filename);
     }
 
     @DisplayName("Проверка содержимого xlsx-файла из zip-архива")
@@ -61,10 +62,11 @@ public class ZipParsingTests {
                     Sheet sheet3 = xlsx.excel.getSheetAt(2);
                     Assertions.assertEquals("Readme", sheet3.getSheetName());
 
-                    break;
+                    return;
                 }
             }
         }
+        Assertions.fail("XLSX-file does not exist in archive: " + filename);
     }
 
     @DisplayName("Проверка содержимого csv-файла из zip-архива")
@@ -86,9 +88,10 @@ public class ZipParsingTests {
                                 data.getFirst()
                         );
                     }
-                    break;
+                    return;
                 }
             }
         }
+        Assertions.fail("CSV-file does not exist in archive: " + filename);
     }
 }
